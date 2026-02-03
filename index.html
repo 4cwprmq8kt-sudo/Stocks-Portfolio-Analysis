@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio-Analyse & Nachrichten</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Aktien Portfolio Analyse</p>
+        <h1>Dein Portfolio verstehen, mit Nachrichten abgleichen und Zukunftsausblick erhalten.</h1>
+        <p class="subtitle">
+          Lade dein Portfolio als CSV hoch (Symbol, Stückzahl, Einstandskurs) und erhalte sofort Kennzahlen,
+          eine Allokationsanalyse sowie einen Nachrichten-Abgleich.
+        </p>
+      </div>
+      <div class="hero-card">
+        <h2>CSV hochladen</h2>
+        <p class="muted">Beispiel: AAPL, 10, 145.20</p>
+        <label class="file-input">
+          <input id="portfolio-file" type="file" accept=".csv" />
+          Datei auswählen
+        </label>
+        <button id="load-sample" class="secondary">Beispieldaten laden</button>
+        <p id="file-status" class="status">Noch keine Datei geladen.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h2>Portfolio-Übersicht</h2>
+        <div class="grid two">
+          <div class="metric">
+            <span>Gesamtwert</span>
+            <strong id="total-value">€0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Anzahl Positionen</span>
+            <strong id="position-count">0</strong>
+          </div>
+          <div class="metric">
+            <span>Top-Position</span>
+            <strong id="top-holding">–</strong>
+          </div>
+          <div class="metric">
+            <span>Durchschnittlicher Einstand</span>
+            <strong id="avg-cost">€0.00</strong>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Stückzahl</th>
+                <th>Einstandskurs</th>
+                <th>Positionswert</th>
+                <th>Allokation</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Tagesnachrichten-Abgleich</h2>
+            <p class="muted">
+              Optional kannst du einen NewsAPI-Key hinterlegen, um tagesaktuelle Nachrichten zu laden.
+              Ohne Key zeigen wir Beispielnachrichten passend zu deinen Symbolen.
+            </p>
+          </div>
+          <div class="news-input">
+            <input id="news-api-key" type="password" placeholder="NewsAPI-Key" />
+            <button id="load-news">Nachrichten aktualisieren</button>
+          </div>
+        </div>
+        <div id="news-list" class="news-list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Zukunftsausblick</h2>
+        <p class="muted">
+          Basierend auf deinen Einstandswerten wird eine vereinfachte 12-Monats-Prognose erstellt (5% p.a.
+          Erwartungswert, 15% Schwankungsband). Kein Ersatz für Finanzberatung.
+        </p>
+        <div class="grid three">
+          <div class="metric">
+            <span>Erwarteter Wert (12M)</span>
+            <strong id="forecast-expected">€0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Optimistisch (+15%)</span>
+            <strong id="forecast-high">€0.00</strong>
+          </div>
+          <div class="metric">
+            <span>Vorsichtig (-15%)</span>
+            <strong id="forecast-low">€0.00</strong>
+          </div>
+        </div>
+        <div class="outlook" id="outlook-text"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Hinweis: Diese App arbeitet vollständig lokal im Browser. Keine Daten werden gespeichert.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
